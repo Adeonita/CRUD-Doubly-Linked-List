@@ -17,16 +17,6 @@ void menu()
         printf("\nDigite 1 para Inserir no inicio, 2 para inserir no final, 3 para remover do inicio, \n4 para remover do final, 5 para remover, 6 para consultar, 7 para listar -1 para sair: \n");
         scanf("%d", &resp);
 
-        // Digite 1 para Inserir no inicio, 
-        // 2 para inserir no final, 
-        // 3 para remover do inicio,
-        // 4 para remover do final,
-        // 5 para remover, 
-        // 6 para consultar, 
-        // 7 para listar 
-        // -1 para sair
-
-
         switch (resp)
         {
             case 1:
@@ -36,26 +26,36 @@ void menu()
                 printf("Insira o idade: ");
                 scanf("%d", &client.age);
                 
-                insert(database, client);
+                insertFirst(database, client);
                 break;
 
             case 2:           
-                printf("Insira o novo nome do usuário: ");
+                printf("Insira o nome: ");
                 scanf("%s", &client.name);
 
-                printf("Insira a nova idade do usuário: ");
+                printf("Insira a idade: ");
                 scanf("%d", &client.age);
 
-                // insertQueue(database, client);
+                insertLast(database, client);
 
                 break;
 
             case 3:
-                // removeInit(database);
+                if(database->first == NULL) {
+                    emptyDatabaseMessage("remover");
+                    break;
+                }
+
+                removeFirst(database);
                 break;
 
             case 4:
-            //    removeFinal(database);
+                if(database->first == NULL) {
+                    emptyDatabaseMessage("remover");
+                    break;
+                }
+
+                removeLast(database);
                 break;
 
             case 5:
