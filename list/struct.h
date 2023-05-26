@@ -7,7 +7,7 @@ struct client
     int id;
     int age;
     char name[10];
-    int active;
+    // int active;
 };
 
 struct list

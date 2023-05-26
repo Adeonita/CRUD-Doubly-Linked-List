@@ -29,7 +29,6 @@ void insert(List* list, Client client)
         first = first->next;
     }
     
-    client.active = 1;
     client.id = list->totalElements;
 
     node->client = client;
@@ -46,6 +45,8 @@ void insert(List* list, Client client)
     
     return;
 }
+
+
 
 void getAll(List* list)
 {
@@ -152,17 +153,13 @@ void saveToFile(List* list)
         printf("Id: %d ", ln->client.id);
         printf("Nome: %s ", ln->client.name);
         printf("Age: %d ", ln->client.age);
-        printf("Active: %d ", ln->client.active);
         printf("\n");
 
-        if (ln->client.active == 1) {
-            fprintf(fptr, "%d %s %d %d \n",
-                ln->client.id, 
-                ln->client.name,
-                ln->client.age,
-                ln->client.active
-            );
-        }
+        fprintf(fptr, "%d %s %d %d \n",
+            ln->client.id, 
+            ln->client.name,
+            ln->client.age
+        );
     }
 
     fclose(fptr);
@@ -188,13 +185,10 @@ void loadFromFile(List* database)
                 "%d %s %d %d\n",
                 &client.id, 
                 &client.name, 
-                &client.age, 
-                &client.active
+                &client.age
             )) != EOF)
     {        
-        if (client.active == 1) {
-            insert(database, client);
-        }
+        insert(database, client);
     }
 
     fclose(fptr);
