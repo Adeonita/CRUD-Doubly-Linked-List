@@ -7,7 +7,6 @@ struct client
     int id;
     int age;
     char name[10];
-    // int active;
 };
 
 struct list
@@ -21,4 +20,5 @@ struct listNode
 {
     Client client;
     ListNode* next;
+    ListNode* previous;
 };
