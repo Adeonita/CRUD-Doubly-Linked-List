@@ -14,8 +14,18 @@ void menu()
 
     while(resp != -1)
     {
-        printf("\nDigite 1 para Inserir,2 para Alterar, 3 para consultar, \n4 para listar, 5 para excluir, 6 para gravar no banco de dados, 7 para carregar do banco de dados -1 para sair: \n");
+        printf("\nDigite 1 para Inserir no inicio, 2 para inserir no final, 3 para remover do inicio, \n4 para remover do final, 5 para remover, 6 para consultar, 7 para listar -1 para sair: \n");
         scanf("%d", &resp);
+
+        // Digite 1 para Inserir no inicio, 
+        // 2 para inserir no final, 
+        // 3 para remover do inicio,
+        // 4 para remover do final,
+        // 5 para remover, 
+        // 6 para consultar, 
+        // 7 para listar 
+        // -1 para sair
+
 
         switch (resp)
         {
@@ -29,52 +39,23 @@ void menu()
                 insert(database, client);
                 break;
 
-            case 2:
-                if (database->first == NULL) {
-
-                    emptyDatabaseMessage("atualizar");                    
-                    break;
-                }
-
-                printf("Insira o Id do usuário a ser atualizado: ");
-                scanf("%d", &id);
-
-                if (id < 0 || id > database->totalElements -1 ) {
-                    notFound("Id");
-
-                    break;
-                }
-                
+            case 2:           
                 printf("Insira o novo nome do usuário: ");
                 scanf("%s", &client.name);
 
                 printf("Insira a nova idade do usuário: ");
                 scanf("%d", &client.age);
 
-                getAndUpdate(database, id, client);
-                // update(database, id, client);
+                // insertQueue(database, client);
+
                 break;
 
             case 3:
-                if (database->first == NULL) {
-                    emptyDatabaseMessage("consultar");
-                    break;
-                }
-
-                printf("Insira o Id do usuário a ser consultado: ");
-                scanf("%d", &id);     
-
-                get(database, id);
+                // removeInit(database);
                 break;
 
             case 4:
-                if (database->first == NULL) {
-                    emptyDatabaseMessage("consultar");
-                    
-                    break;
-                }
-        
-                getAll(database);
+            //    removeFinal(database);
                 break;
 
             case 5:
@@ -93,26 +74,32 @@ void menu()
                 }
 
                 toRemove(database, id);
+                sleep(3);
+                printWithLine("Usuário removido com sucesso!");
                 break;  
 
             case 6:
+                printf("Insira o id do usuário a ser consultado: ");
+                scanf("%d", &id);
+                
                 if (database->first == NULL) {
-                    printWithLine("Não há registros para serem gravados no banco de dados");
+                    printWithLine("Não há registros para serem consultados no banco de dados");
                     
                     break;
                 }
 
-                saveToFile(database);
+                get(database, id);
                 break;
 
             case 7:
-                printWithLine("Carregando registros do banco de dados...");
+                if (database->first == NULL) {
+                    printWithLine("Não há registros para serem consultados no banco de dados");
+                    
+                    break;
+                }
 
-                loadFromFile(database);
-                
-                sleep(5);
-                printWithLine("Registros carregados em memória com sucesso!");
-                break; 
+                getAll(database);
+                break;
             default:
                 break;
         }
