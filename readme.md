@@ -1,4 +1,4 @@
-# CRUD com Listas Encadeadas Dinâmicas
+# CRUD com Listas Encadeadas Dinâmicas Duplamente Encadeadas
 ## Objetivo
 
 Desenvolver uma biblioteca para cadastro de dados utilizando uma estrutura de dados genérica na linguagem C .
@@ -73,7 +73,7 @@ Atualiza um registro na lista pelo id
 ListNode* update(List* list, int id, Client client)
 ```
 
-```
+
 ## Requisitos 
 
 - [gcc](https://gcc.gnu.org/onlinedocs/)
